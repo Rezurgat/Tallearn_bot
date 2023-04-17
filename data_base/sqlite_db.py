@@ -40,10 +40,13 @@ async def send_me_my_students(message):
                              f'\nЦена --> {stud[5]}')
 
 
-async def send_me_my_timetable(message):
+async def my_timetable(message):
+    timetable_days = ('понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье')
     for days in cur.execute('SELECT * FROM timetable').fetchall():
-        await message.answer(f'{days[1]} '
-                             f'\n{days[2]}')
+        if message.text.replace('/', '') in timetable_days and message.text.replace('/', '') == days[1]:
+            await message.answer(f'{days[2]}')
+        else:
+            await message.answer(f'Расписание на {message.text} не заполнено. Займись этим, бублик!')
 
 
 async def delete_students_db():

@@ -15,5 +15,4 @@ async def students_list(message: types.Message):
     await sqlite_db.send_me_my_students(message)
 
 
-async def send_me_my_timetable(message: types.Message):
-    await sqlite_db.send_me_my_timetable(message)
+

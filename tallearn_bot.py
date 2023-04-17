@@ -24,7 +24,6 @@ async def on_startup(_):
 
 dp.register_message_handler(client.send_welcome_message, commands=['start'])
 dp.register_message_handler(client.students_list, commands=['Мои_ученики'])
-dp.register_message_handler(client.send_me_my_timetable, commands=['Расписание_занятий'])
 dp.register_message_handler(admin_students.state_cancel, commands=['Отмена'], state="*")
 dp.register_message_handler(admin_students.state_cancel, Text(equals=['Отмена'], ignore_case=True), state='*')
 dp.register_message_handler(admin_students.st_start, commands=['Добавить_ученика(ученицу)'], state=None)
@@ -40,7 +39,7 @@ dp.register_message_handler(admin_students.load_daytime, state=AddStudent.daytim
 dp.register_message_handler(admin_students.load_price,  state=AddStudent.price)
 dp.register_message_handler(admin_timetable.load_day, state=AddTimetable.day)
 dp.register_message_handler(admin_timetable.load_info,  state=AddTimetable.info)
-
+dp.register_message_handler(sqlite_db.my_timetable)
 
 
 """Команда запуска бота на LongPolling"""
